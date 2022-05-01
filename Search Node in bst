@@ -1,0 +1,22 @@
+Approach O(n)
+bool search(Node* root, int x) {
+    // Your code here
+    bool ans;
+    if(root==NULL){
+        return false;
+    }
+    if(root->data==x){
+        return true;
+    }
+    if(root->data>x){
+        ans=search(root->left,x);
+    }
+    else{
+        ans=search(root->right,x);
+    }
+    if(ans){
+        return true;
+    }
+    return false;
+    
+}
