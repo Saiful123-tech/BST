@@ -1,0 +1,51 @@
+int minValue(Node* root) {
+    // Code here
+    if(root==NULL){
+        return -1;
+    }
+    Node *temp=root;
+    Node *ans;
+    while(temp!=NULL){
+        ans=temp;
+        temp=temp->left;
+    }
+    return ans->data;
+}
+Node *deleteNode(Node *root, int X) {
+    // your code goes here
+    Node *temp;
+   if(root==NULL){
+       return NULL;
+   }
+   if(root->data==X){
+       if(root->left==NULL && root->right==NULL){
+           delete root;
+           return NULL;
+       }
+        if(root->left!=NULL && root->right==NULL){
+          temp=root->left;
+          delete root;
+          return temp;
+       }
+       if(root->left==NULL && root->right!=NULL){
+           temp=root->right;
+           delete root;
+           return temp;
+       }
+       if(root->left!=NULL && root->right!=NULL){
+           int rightmin=minValue(root->right);
+          root->data=rightmin;
+          root->right=deleteNode(root->right,rightmin);
+          return root;
+       }
+    // Code here
+   }
+   else if(root->data<X){
+      root->right=deleteNode(root->right,X);
+      return root;
+   }
+   else{
+       root->left=deleteNode(root->left,X);
+       return root;
+   }
+}
