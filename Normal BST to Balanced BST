@@ -1,0 +1,26 @@
+void inorder(Node* root,vector<int> &v){
+    if(root==NULL){
+        return;
+    }
+        inorder(root->left,v);
+        v.push_back(root->data);
+        inorder(root->right,v);
+    
+}
+Node* inordertoBST(int si,int ei,vector<int> v){
+    if(si>ei){
+        return NULL;
+    }
+    int mid=(si+ei)/2;
+    Node* root=new Node(v[mid]);
+    root->left=inordertoBST(si,mid-1,v);
+    root->right=inordertoBST(mid+1,ei,v);
+    return root;
+}
+Node* buildBalancedTree(Node* root)
+{
+	// Code here
+	vector<int> v;
+	inorder(root,v);
+	return inordertoBST(0,v.size()-1,v);
+}
