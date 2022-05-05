@@ -44,3 +44,5 @@ class Solution
        return merge(v1,v2);
     }
 };
+tc o(m+n)
+sc o(m+n)
